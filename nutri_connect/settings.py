@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ef+d)2s7a=&65-5-5xwhj5foia+(r7vmofoj2!dfai4d%7cqt#'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
+DATABASE_URL = config('DATABASE_URL', default='')
+GENERATIVEAI_API_KEY = config('GENERATIVEAI_API_KEY')
 
 ALLOWED_HOSTS = []
 
@@ -80,7 +82,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'nutri_connect.wsgi.application'
 
 
-GENERATIVEAI_API_KEY = 'AIzaSyBKDv0zx_5b45gE9KODJMrB9rXa_ViusLc'
+
 
 
 # Database
