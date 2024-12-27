@@ -1,0 +1,32 @@
+{% extends 'layouts/app.html' %}
+
+{% block content %}
+<h1>Dashboard: {{ request.user.username }}</h1>
+
+
+<a href="{% url 'update_profile' %}">
+    {% if user.profile_picture %}
+        <img src="{{ user.profile_picture.url }}" alt="Profile Picture" style="max-width: 75px; max-height: 75px; cursor: pointer;">
+    {% else %}
+        <img src="{{ MEDIA_URL }}def_profile.jpg" alt="Default Profile Picture" style="max-width: 75px; max-height: 75px; cursor: pointer;">
+    {% endif %}
+</a>
+
+
+
+
+<div class="row justify-content-center">
+    <div class="col-sm-6">
+        <h2>Options</h2>
+        <ul class="list-group">
+            <li><a href="{% url 'meal_suggestion' %}">Meal Suggestions</a></li>
+            <li><a href="{% url 'book_appointment' %}">Book Consultation</a></li>
+            <li><a href="{% url 'product_list' %}">Marketplace</a></li>
+            <li><a href="{% url 'detail' %}">User Detail</a></li>
+            <li><a href="{% url 'list_messages' %}">chatbot</a></li>
+            <li><a href="{% url 'dietary_preferences_view' %}">Dietary Preferences</a></li>
+        </ul>
+        <a href="{% url 'logout' %}" class="btn btn-dark">Logout</a>
+    </div>
+</div>
+{% endblock %}
